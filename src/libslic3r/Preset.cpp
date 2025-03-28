@@ -505,7 +505,7 @@ void Preset::remove_files()
 }
 
 //BBS: add logic for only difference save
-void Preset::save(DynamicPrintConfig* parent_config)
+void Preset::save(const DynamicPrintConfig* parent_config)
 {
     //BBS: add project embedded preset logic
     if (this->is_project_embedded)
@@ -867,8 +867,9 @@ static std::vector<std::string> s_Preset_filament_options {
     "filament_unloading_speed", "filament_unloading_speed_start", "filament_toolchange_delay", "filament_cooling_moves", "filament_stamping_loading_speed", "filament_stamping_distance",
     "filament_cooling_initial_speed", "filament_cooling_final_speed", "filament_ramming_parameters",
     "filament_multitool_ramming", "filament_multitool_ramming_volume", "filament_multitool_ramming_flow", "activate_chamber_temp_control",
-    "filament_long_retractions_when_cut","filament_retraction_distances_when_cut", "idle_temperature"
-    };
+    "filament_long_retractions_when_cut","filament_retraction_distances_when_cut", "idle_temperature",
+    "spoolman_spool_id"    
+};
 
 static std::vector<std::string> s_Preset_machine_limits_options {
     "machine_max_acceleration_extruding", "machine_max_acceleration_retracting", "machine_max_acceleration_travel",
@@ -2210,7 +2211,7 @@ bool PresetCollection::clone_presets_for_filament(Preset const *const &     pres
 {
     std::vector<Preset const *> const presets = {preset};
     return clone_presets(presets, failures, [&filament_name, &filament_id, &dynamic_config, &compatible_printers](Preset &preset, Preset::Type &type) {
-        preset.name        = filament_name + " @" + compatible_printers;
+        preset.name        = filament_name + (compatible_printers.empty() ? "" : (" @" + compatible_printers));
         if (type == Preset::TYPE_FILAMENT) {
             preset.config.apply_only(dynamic_config, {"filament_vendor", "compatible_printers", "filament_type"},true);
 
