@@ -237,7 +237,8 @@ public:
 		std::function<bool(wxEvtHandler*)> callback = std::function<bool(wxEvtHandler*)>());
     void set_simplify_suggestion_multiline(const ObjectID oid, bool bMulti);
 	// Close object warnings, whose ObjectID is not in the list.
-	// living_oids is expected to be sorted and contain all ObjectIDs for the current project (all plates).	void remove_simplify_suggestion_of_released_objects(const std::vector<ObjectID>& living_oids);
+	// living_oids is expected to be sorted and contain all ObjectIDs for the current project (all plates).	
+	void remove_simplify_suggestion_of_released_objects(const std::vector<ObjectID>& living_oids);
 	void remove_simplify_suggestion_with_id(const ObjectID oid);
 	// Called when the side bar changes its visibility, as the "slicing complete" notification supplements
 	// the "slicing info" normally shown at the side bar.

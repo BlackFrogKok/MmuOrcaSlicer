@@ -6830,7 +6830,7 @@ void Plater::priv::on_slicing_began()
 }
 void Plater::priv::add_warning(const Slic3r::PrintStateBase::Warning& warning, size_t oid)
 {
-    current_warnings[get_current_slicing_plate_index()];
+    auto& cur_plate_warnings = current_warnings[get_current_slicing_plate_index()];
     for (auto& it : cur_plate_warnings) {
         if (warning.message_id == it.first.message_id) {
             if (warning.message_id != 0 || (warning.message_id == 0 && warning.message == it.first.message))
@@ -6907,7 +6907,7 @@ bool Plater::priv::warnings_dialog()
         get_text_from_warnings(current_warnings[cur_plate_idx]);
     }
     text += "\n\nDo you still wish to export?";
-    MessageDialog msg_window(this->q, from_u8(text), _L("Slicing Warnings"), wxYES_NO);    MessageDialog msg_window(this->q, from_u8(text), _L("warnings"), wxOK);
+    MessageDialog msg_window(this->q, from_u8(text), _L("Slicing Warnings"), wxYES_NO);    
     const auto    res = msg_window.ShowModal();
     return res == wxID_YES;
 }
