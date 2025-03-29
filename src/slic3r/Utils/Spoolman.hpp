@@ -1,6 +1,12 @@
 #ifndef SLIC3R_SPOOLMAN_HPP
 #define SLIC3R_SPOOLMAN_HPP
 
+#include <boost/property_tree/ptree.hpp> // Add this include statement
+#include <boost/property_tree/ptree_fwd.hpp>
+#include <map>
+#include <memory>
+#include <string>
+
 namespace pt = boost::property_tree;
 
 namespace Slic3r {
