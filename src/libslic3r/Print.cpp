@@ -3081,7 +3081,7 @@ std::vector<SpoolmanFilamentConsumptionEstimate> Print::get_spoolman_filament_co
     auto get_used_filament_from_volume = [&](const int& extruder_id) {
         // confirm the item exists in the stats map
         if (m_print_statistics.filament_stats.count(extruder_id) <= 0)
-            return std::pair {0., 0.};
+            return std::make_pair(0., 0.);
 
         const double& volume = m_print_statistics.filament_stats.at(extruder_id);
         return std::pair { volume / (PI * sqr(0.5 * m_config.filament_diameter.get_at(extruder_id))),
