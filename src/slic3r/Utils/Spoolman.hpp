@@ -6,7 +6,6 @@
 #include <map>
 #include <memory>
 #include <string>
-#include "DynamicConfig.hpp"
 
 namespace pt = boost::property_tree;
 
