@@ -869,7 +869,7 @@ std::string AppConfig::load()
 #endif
         pt::read_ini(ifs, tree);
     }
-    catch (pt::ptree_error& ex) {
+    catch (const std::exception& err) {
 #ifdef WIN32
         // The configuration file is corrupted, try replacing it with the backup configuration.
         ifs.close();
@@ -895,7 +895,7 @@ std::string AppConfig::load()
                     pt::read_ini(ifs, tree);
                     recovered = true;
                 }
-                catch (pt::ptree_error& ex) {
+                catch (const std::exception& err) {
                     BOOST_LOG_TRIVIAL(info) << format("Failed to parse configuration file \"%1%\" after it has been restored from backup: %2%", AppConfig::loading_path(), ex.what());
                 }
             }

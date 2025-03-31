@@ -5,6 +5,9 @@
 #include <boost/regex.hpp>
 #include "Spoolman.hpp"
 #include "Http.hpp"
+#include <boost/property_tree/json_parser.hpp>
+
+namespace pt = boost::property_tree;
 
 namespace Slic3r {
 
