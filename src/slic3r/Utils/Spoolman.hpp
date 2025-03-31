@@ -6,6 +6,8 @@
 #include <map>
 #include <memory>
 #include <string>
+#include "libslic3r/Config.hpp"
+
 
 namespace pt = boost::property_tree;
 
